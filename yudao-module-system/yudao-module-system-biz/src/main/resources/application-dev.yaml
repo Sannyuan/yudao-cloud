@@ -38,31 +38,34 @@ spring:
       primary: master
       datasource:
         master:
-          name: ruoyi-vue-pro
-          url: jdbc:mysql://400-infra.server.iocoder.cn:3306/${spring.datasource.dynamic.datasource.master.name}?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=CTT&nullCatalogMeansCurrent=true
-          driver-class-name: com.mysql.jdbc.Driver
+          name: yudao-cloud
+          url: jdbc:mysql://82.157.41.108:3647/${spring.datasource.dynamic.datasource.master.name}?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true # MySQL Connector/J 8.X 连接的示例
+          #          driver-class-name: com.mysql.jdbc.Driver
           username: root
-          password: 3WLiVUBEwTbvAfsh
+          password: zlw.0221.OK
         slave: # 模拟从库，可根据自己需要修改 # 模拟从库，可根据自己需要修改
-          name: ruoyi-vue-pro
-          url: jdbc:mysql://400-infra.server.iocoder.cn:3306/${spring.datasource.dynamic.datasource.slave.name}?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=CTT&nullCatalogMeansCurrent=true
-          driver-class-name: com.mysql.jdbc.Driver
+          name: yudao-cloud
+          url: jdbc:mysql://82.157.41.108:3647/${spring.datasource.dynamic.datasource.master.name}?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true # MySQL Connector/J 8.X 连接的示例
+          #          driver-class-name: com.mysql.jdbc.Driver
           username: root
-          password: 3WLiVUBEwTbvAfsh
+          password: zlw.0221.OK
 
   # Redis 配置。Redisson 默认的配置足够使用，一般不需要进行调优
   data:
     redis:
-      host: 400-infra.server.iocoder.cn # 地址
-      port: 6379 # 端口
-      database: 1 # 数据库索引
-#      password: 123456 # 密码，建议生产环境开启
+      host: 82.157.41.108
+      port: 26379
+      database: 1
+      password: zlw.0221.OK
+      lettuce:
+        # 在关闭客户端连接之前等待任务处理完成的最长时间:100ms
+        shutdown-timeout: 100
 
 --- #################### MQ 消息队列相关配置 ####################
 
 # rocketmq 配置项，对应 RocketMQProperties 配置类
-rocketmq:
-  name-server: 127.0.0.1:9876 # RocketMQ Namesrv
+#rocketmq:
+#  name-server: 127.0.0.1:9876 # RocketMQ Namesrv
 
 spring:
   # RabbitMQ 配置项，对应 RabbitProperties 配置类
@@ -72,12 +75,13 @@ spring:
     username: guest # RabbitMQ 服务的账号
     password: guest # RabbitMQ 服务的密码
   # Kafka 配置项，对应 KafkaProperties 配置类
-  kafka:
-    bootstrap-servers: 127.0.0.1:9092 # 指定 Kafka Broker 地址，可以设置多个，以逗号分隔
+#  kafka:
+#    bootstrap-servers: 127.0.0.1:9092 # 指定 Kafka Broker 地址，可以设置多个，以逗号分隔
 
 --- #################### 定时任务相关配置 ####################
 xxl:
   job:
+    enabled: false # 是否开启调度中心，默认为 true 开启
     admin:
       addresses: http://127.0.0.1:9090/xxl-job-admin # 调度中心部署跟地址
 
