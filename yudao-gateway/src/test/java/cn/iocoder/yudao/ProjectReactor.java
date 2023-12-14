@@ -38,15 +38,15 @@ public class ProjectReactor {
 
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
-        String projectBaseDir = getProjectBaseDir();
+        String projectBaseDir = "C:\\Users\\yuanyi\\workspace\\framework\\yudao-cloud";
         log.info("[main][原项目路劲改地址 ({})]", projectBaseDir);
 
         // ========== 配置，需要你手动修改 ==========
-        String groupIdNew = "cn.star.gg";
-        String artifactIdNew = "star";
-        String packageNameNew = "cn.start.pp";
-        String titleNew = "土豆管理系统";
-        String projectBaseDirNew = projectBaseDir + "-new"; // 一键改名后，“新”项目所在的目录
+        String groupIdNew = "com.bathj.cloud";
+        String artifactIdNew = "fyts-cloud-framework";
+        String packageNameNew = "com.bathj.cloud";
+        String titleNew = "FYTS快速开发平台";
+        String projectBaseDirNew = "C:\\Users\\yuanyi\\workspace\\framework\\fyts-cloud-framework"; // 一键改名后，“新”项目所在的目录
         log.info("[main][检测新项目目录 ({})是否存在]", projectBaseDirNew);
         if (FileUtil.exist(projectBaseDirNew)) {
             log.error("[main][新项目目录检测 ({})已存在，请更改新的目录！程序退出]", projectBaseDirNew);
